@@ -1,8 +1,6 @@
 #include <cstdio>
-#include <iostream>
 #include <algorithm>
 #include <climits>
-#include <cmath>
 
 using namespace std;
 typedef long long i64;
@@ -32,8 +30,6 @@ double bsearch(double low,double high,int n){
 	for(int iter = 0;iter < ITERATION_MAX && (high - low ) > EPS;iter++) {
 		mid = (low + high) /2;
 		double vol = calVolume(mid,n);
-		//printf("%d %f %f %lf %lf \n",iter,low,high,vol,volume);
-		//if( abs(vol - volume ) < eps ) return mid ;
 		if ( vol + EPS < volume ) low = mid ;
 		else high = mid; 
 	}
@@ -57,8 +53,6 @@ int main()
 			high = max(high,mybox[i].b + mybox[i].h);
 		}
 		scanf("%lf",&volume);
-		//tvolume = 0;
-		//for(int i = 0;i<n;i++) tvolume += mybox[i].area * mybox[i].h;
 		if( volume - calVolume(high,n) > EPS) printf("OVERFLOW\n");
 		else printf("%0.2f\n",bsearch(low,high,n));
 		delete[] mybox;
